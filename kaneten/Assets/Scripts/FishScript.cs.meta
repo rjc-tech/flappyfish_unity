@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: f777fd846ba039949aea76e092bbc4fc
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - FlyAudioClip: {instanceID: 0}
+  - DeathAudioClip: {instanceID: 0}
+  - ScoredAudioClip: {instanceID: 0}
+  - IntroGUI: {fileID: 2136625625659528612, guid: d91020ae08fb9be4e8accf236bdd983b,
+      type: 3}
+  - DeathGUI: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
