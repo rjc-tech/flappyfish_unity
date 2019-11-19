@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 /*
  * キャラクター周りのスクリプト
@@ -8,7 +9,7 @@ using System.Collections;
 public class FishScript : MonoBehaviour
 {
     public AudioClip FlyAudioClip;
-    // public AudioClip DeathAudioClip, ScoredAudioClip;
+    public AudioClip DeathAudioClip, ScoredAudioClip;
     public float RotateUpSpeed = 1, RotateDownSpeed = 1;
     // public GameObject IntroGUI, DeathGUI;
     public float VelocityPerJump = 3;
@@ -127,8 +128,7 @@ public class FishScript : MonoBehaviour
     }
 
 
-    /*
-    // 障害物を避けた時の処理
+    // キャラクターが障害物に当たった or 避けた時の処理
     void OnTriggerEnter2D(Collider2D col)
     {
         if (GameStateManager.GameState == GameState.Playing)
@@ -139,16 +139,16 @@ public class FishScript : MonoBehaviour
                 GetComponent<AudioSource>().PlayOneShot(ScoredAudioClip);
                 ScoreManagerScript.Score++;
             }
-            else if (col.gameObject.tag == "Pipe")
+            // 障害物のコライダーを持つゲームオブジェクトと接触したら
+            else if (col.gameObject.tag == "Obstacle1")
             {
                 FlappyDies();
             }
         }
     }
-    */
 
     /*
-    // キャラクターが障害物に当たった時の処理
+    // キャラクターが床に当たった時の処理
     void OnCollisionEnter2D(Collision2D col)
     {
         if (GameStateManager.GameState == GameState.Playing)
@@ -160,13 +160,12 @@ public class FishScript : MonoBehaviour
         }
     }
     */
-    /*
+
     // キャラクター死亡処理
     void FlappyDies()
     {
         GameStateManager.GameState = GameState.Dead;
-        DeathGUI.SetActive(true);
         GetComponent<AudioSource>().PlayOneShot(DeathAudioClip);
+        SceneManager.LoadScene("result");    //次の画面へ
     }
-    */
 }

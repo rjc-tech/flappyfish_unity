@@ -8,4 +8,13 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/flappyfishTitle.unity
+    guid: 3abd450e6b89c534a9c03f21ad3f6a59
+  - enabled: 1
+    path: Assets/Scenes/play.unity
+    guid: f801f732f0e9eac49a6ef247f55c2636
+  - enabled: 1
+    path: Assets/Scenes/result.unity
+    guid: 511e2ad86b09c684aadf8bfe5be79771
   m_configObjects: {}
