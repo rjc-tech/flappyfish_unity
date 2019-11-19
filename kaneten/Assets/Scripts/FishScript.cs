@@ -7,12 +7,10 @@ using System.Collections;
  */
 public class FishScript : MonoBehaviour
 {
-    // 一旦、効果音はなし
-    // public AudioClip FlyAudioClip, DeathAudioClip, ScoredAudioClip;
-    public Sprite GetReadySprite;
+    public AudioClip FlyAudioClip;
+    // public AudioClip DeathAudioClip, ScoredAudioClip;
     public float RotateUpSpeed = 1, RotateDownSpeed = 1;
-    public GameObject IntroGUI, DeathGUI;
-    public Collider2D restartButtonGameCollider;
+    // public GameObject IntroGUI, DeathGUI;
     public float VelocityPerJump = 3;
     public float XSpeed = 1;
 
@@ -39,7 +37,8 @@ public class FishScript : MonoBehaviour
             if (WasTouchedOrClicked())
             {
                 BoostOnYAxis();
-                IntroGUI.SetActive(false);
+                // ゲーム開始時のGUIはなし
+                // IntroGUI.SetActive(false);
             }
     }
 
@@ -68,8 +67,8 @@ public class FishScript : MonoBehaviour
     void BoostOnYAxis()
     {
         GetComponent<Rigidbody2D>().velocity = new Vector2(0, VelocityPerJump);
-        // 効果音なし
-        // GetComponent<AudioSource>().PlayOneShot(FlyAudioClip);
+        // 効果音
+        GetComponent<AudioSource>().PlayOneShot(FlyAudioClip);
     }
 
     // ジャンプ時と落下時の挙動
