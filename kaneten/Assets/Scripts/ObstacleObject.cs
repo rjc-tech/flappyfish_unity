@@ -38,7 +38,8 @@ public class ObstacleObject : MonoBehaviour
      // if (Input.GetKey (KeyCode.LeftArrow)) {
 
      		// ObstacleプレハブをGameObject型で取得
-        	GameObject obj = (GameObject)Resources.Load ("Obstacle");
+        	GameObject obj = (GameObject)Resources.Load ("Obstacle1");
+        	GameObject obj2 = (GameObject)Resources.Load ("Obstacle2");
         	// Obstacleプレハブを元に、インスタンスを生成
         	float y = Random.value * 10 - 5f;
         	
@@ -50,7 +51,7 @@ public class ObstacleObject : MonoBehaviour
         	
         	Instantiate (obj, new Vector3(25.0f,y,4.0f), Quaternion.identity);
         	
-        	Instantiate (obj, new Vector3(25.0f,y - passSpace,4.0f), Quaternion.identity);
+        	Instantiate (obj2, new Vector3(25.0f,y - passSpace,4.0f), Quaternion.identity);
       
         	// 経過時間をリセット
             timeElapsed = 0;
