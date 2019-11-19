@@ -31,15 +31,46 @@ public class FishScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-            Application.Quit();
+        // ゲーム開始
+        Application.Quit();
 
+        // 初期状態
+        if (GameStateManager.GameState == GameState.Intro)
+        {
             MoveFishOnXAxis();
             if (WasTouchedOrClicked())
             {
                 BoostOnYAxis();
-                // ゲーム開始時のGUIはなし
+                GameStateManager.GameState = GameState.Playing;
                 // IntroGUI.SetActive(false);
+                ScoreManagerScript.Score = 0;
             }
+        }
+        // ゲーム開始状態
+        else if (GameStateManager.GameState == GameState.Playing)
+        {
+            // 常にキャラを右へ移動
+            MoveFishOnXAxis();
+            // ジャンプボタンが押されたら
+            if (WasTouchedOrClicked())
+            {
+                // ジャンプ処理
+                BoostOnYAxis();
+            }
+        }
+        // ゲーム終了状態
+        else if (GameStateManager.GameState == GameState.Dead)
+        {
+            Vector2 contactPoint = Vector2.zero;
+
+            // 動きを止める
+            if (Input.touchCount > 0)
+                contactPoint = Input.touches[0].position;
+            if (Input.GetMouseButtonDown(0))
+                contactPoint = Input.mousePosition;
+
+            // リスタート処理
+        }
     }
 
     void FixedUpdate()
@@ -97,11 +128,13 @@ public class FishScript : MonoBehaviour
 
 
     /*
+    // 障害物を避けた時の処理
     void OnTriggerEnter2D(Collider2D col)
     {
         if (GameStateManager.GameState == GameState.Playing)
         {
-            if (col.gameObject.tag == "Pipeblank") //pipeblank is an empty gameobject with a collider between the two pipes
+            // Pipeblankとは上下２つの障害物のブランク部分のコライダーを持つゲームオブジェクトを想定
+            if (col.gameObject.tag == "Pipeblank")
             {
                 GetComponent<AudioSource>().PlayOneShot(ScoredAudioClip);
                 ScoreManagerScript.Score++;
