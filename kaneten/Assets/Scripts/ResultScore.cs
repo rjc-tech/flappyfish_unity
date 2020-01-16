@@ -6,13 +6,35 @@ using UnityEngine.UI;
 public class ResultScore : MonoBehaviour
 {
 
+    public Text highScoreText;
+
     public Text scoreText;
+
+    private static int highScore;
 
     void Start()
     {
-        int s = FishScoreManager.getScore();
+        int resultScore = FishScoreManager.getScore();
 
-        scoreText.text = "ResultScore: " + s.ToString();
-        Debug.Log("score: " + s.ToString());
+        Debug.Log("a: " + resultScore);
+        Debug.Log("b: " + highScore);
+
+        if (resultScore > highScore)
+        {
+            highScore = resultScore;
+        }
+
+        if (highScoreText != null)
+        {
+            highScoreText.text = "highScore: " + highScore.ToString();
+        }
+        
+        if (scoreText != null)
+        {
+            scoreText.text = "ResultScore: " + resultScore.ToString();
+        }
+        
+        Debug.Log("highScore: " + highScore.ToString());
+        Debug.Log("ResultScore: " + resultScore.ToString());
     }
 }
