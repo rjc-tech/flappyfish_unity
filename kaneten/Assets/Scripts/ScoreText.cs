@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class ScoreText : MonoBehaviour
 {
-
    public Text scoreText;
    
     void Start()
@@ -13,7 +12,6 @@ public class ScoreText : MonoBehaviour
         
     }
 
-    // Update is called once per frame
     void Update()
     {
          scoreText.text = FishScoreManager.getScore().ToString();
