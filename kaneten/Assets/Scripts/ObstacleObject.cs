@@ -12,7 +12,7 @@ public class ObstacleObject : MonoBehaviour
 	const float createInterval = 1.5f;
 	
 	// 通過可能領域
-	const float passSpace = 6f;
+	const float passSpace = 4.5f;
 	
 	// 画面高さ
 	const float screenHeight = 10f;
@@ -41,8 +41,15 @@ public class ObstacleObject : MonoBehaviour
 		// 経過時間が障害物生成間隔以上ならば新しい障害物を生成
         if(timeElapsed >= createInterval) {
      		// ObstacleプレハブをGameObject型で取得
-        	GameObject obj = (GameObject)Resources.Load ("Obstacle1");
-        	obj.tag = "Obstacle1";
+        	GameObject obj_a = (GameObject)Resources.Load ("Obstacle1");
+        	GameObject obj_b = (GameObject)Resources.Load ("Obstacle1");
+        	GameObject obj_c = (GameObject)Resources.Load ("Obstacle1");
+        	GameObject obj_d = (GameObject)Resources.Load ("Obstacle1");
+        	obj_a.tag = "Obstacle1";
+        	obj_b.tag = "Obstacle1";
+        	obj_c.tag = "Obstacle1";
+        	obj_d.tag = "Obstacle1";
+        	
         	GameObject obj2 = (GameObject)Resources.Load ("Obstacle2");
         	obj2.tag = "Obstacle2";
         	
@@ -51,7 +58,10 @@ public class ObstacleObject : MonoBehaviour
         	// 上障害物は下障害物から+passSpace
         	float upperY = underY + passSpace;
        	
-        	Instantiate (obj, new Vector3(25.0f,upperY,4.0f), Quaternion.identity);
+        	Instantiate (obj_a, new Vector3(25.0f,upperY+3,4.0f), Quaternion.identity);
+        	Instantiate (obj_b, new Vector3(25.0f,upperY+2,4.0f), Quaternion.identity);
+        	Instantiate (obj_c, new Vector3(25.0f,upperY+1,4.0f), Quaternion.identity);
+        	Instantiate (obj_d, new Vector3(25.0f,upperY,4.0f), Quaternion.identity);
         	
         	Instantiate (obj2, new Vector3(25.0f,underY,4.0f), Quaternion.identity);
       
