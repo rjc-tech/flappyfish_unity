@@ -12,7 +12,7 @@ public class ObstacleObject : MonoBehaviour
 	const float createInterval = 1.5f;
 	
 	// 通過可能領域
-	const float passSpace = 3f;
+	const float passSpace = 6f;
 	
 	// 画面高さ
 	const float screenHeight = 10f;
@@ -34,9 +34,6 @@ public class ObstacleObject : MonoBehaviour
         { 
            return;
         }
-    
-        FishScoreManager.addPoint(1);
-        Debug.Log(FishScoreManager.getScore());
         
        // 前回Updateからの経過時間を加算
        timeElapsed += Time.deltaTime;
@@ -48,18 +45,15 @@ public class ObstacleObject : MonoBehaviour
         	obj.tag = "Obstacle1";
         	GameObject obj2 = (GameObject)Resources.Load ("Obstacle2");
         	obj2.tag = "Obstacle2";
-        	// Obstacleプレハブを元に、インスタンスを生成
-        	float y = Random.value * 10 - 5f;
         	
-        	if(y > 4.0f){
-        		y = 4.0f;
-        	} else if (y < -1.0f) {
-        		y = -1.0f;
-        	}
+        	// 下障害物
+        	float underY = Random.value * 3 - 5f;
+        	// 上障害物は下障害物から+passSpace
+        	float upperY = underY + passSpace;
+       	
+        	Instantiate (obj, new Vector3(25.0f,upperY,4.0f), Quaternion.identity);
         	
-        	Instantiate (obj, new Vector3(25.0f,y,4.0f), Quaternion.identity);
-        	
-        	Instantiate (obj2, new Vector3(25.0f,y - passSpace,4.0f), Quaternion.identity);
+        	Instantiate (obj2, new Vector3(25.0f,underY,4.0f), Quaternion.identity);
       
         	// 経過時間をリセット
             timeElapsed = 0;

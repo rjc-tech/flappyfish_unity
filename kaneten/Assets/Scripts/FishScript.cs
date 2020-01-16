@@ -19,8 +19,12 @@ public class FishScript : MonoBehaviour
 
     // 初期処理
     void Start()
-    {Debug.Log("Start");
+    {
        rigidbody = GetComponent<Rigidbody2D>();
+       rigidbody.simulated = false;
+       FishScoreManager.resetScore();
+       GameStateManager.GameState = GameState.Intro;
+       
     }
 
     FlappyYAxisTravelState flappyYAxisTravelState;
@@ -34,14 +38,10 @@ public class FishScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        // ゲーム開始
-        Application.Quit();
-
+		Debug.Log(GameStateManager.GameState);
         // 初期状態
         if (GameStateManager.GameState == GameState.Intro)
         {
-            rigidbody.simulated = false;
             MoveFishOnXAxis();
             if (WasTouchedOrClicked())
             {
@@ -54,6 +54,9 @@ public class FishScript : MonoBehaviour
         // ゲーム開始状態
         else if (GameStateManager.GameState == GameState.Playing)
         { 
+            // スコア加算    
+            FishScoreManager.addPoint(1);
+            
             rigidbody.simulated = true;
             // 常にキャラを右へ移動
             // MoveFishOnXAxis();
@@ -75,8 +78,6 @@ public class FishScript : MonoBehaviour
                 contactPoint = Input.touches[0].position;
             if (Input.GetMouseButtonDown(0))
                 contactPoint = Input.mousePosition;
-
-            // リスタート処理
         }
     }
 
