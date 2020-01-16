@@ -30,6 +30,14 @@ public class ObstacleObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      if (GameStateManager.GameState != GameState.Playing)
+        { 
+           return;
+        }
+    
+        FishScoreManager.addPoint(1);
+        Debug.Log(FishScoreManager.getScore());
+        
        // 前回Updateからの経過時間を加算
        timeElapsed += Time.deltaTime;
 

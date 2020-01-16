@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ground : MonoBehaviour
 {
-    const float scale = 24.0f;
+    const float scale = 22.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -21,7 +21,7 @@ public class Ground : MonoBehaviour
         if (transform.position.x < -scale)
         {
             // 1画面分右に移動する
-            transform.position = new Vector3(scale, transform.position.y, transform.position.z);
+          transform.position = new Vector3(scale, transform.position.y, transform.position.z);
             
         }
     }

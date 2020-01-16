@@ -12,13 +12,15 @@ public class FishScript : MonoBehaviour
     public AudioClip DeathAudioClip, ScoredAudioClip;
     public float RotateUpSpeed = 1, RotateDownSpeed = 1;
     // public GameObject IntroGUI, DeathGUI;
-    public float VelocityPerJump = 3;
+    public float VelocityPerJump = 6;
     public float XSpeed = 1;
+    
+    Rigidbody2D rigidbody;
 
     // 初期処理
     void Start()
-    {
-
+    {Debug.Log("Start");
+       rigidbody = GetComponent<Rigidbody2D>();
     }
 
     FlappyYAxisTravelState flappyYAxisTravelState;
@@ -32,24 +34,27 @@ public class FishScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         // ゲーム開始
         Application.Quit();
 
         // 初期状態
         if (GameStateManager.GameState == GameState.Intro)
         {
+            rigidbody.simulated = false;
             MoveFishOnXAxis();
             if (WasTouchedOrClicked())
             {
                 BoostOnYAxis();
                 GameStateManager.GameState = GameState.Playing;
                 // IntroGUI.SetActive(false);
-                ScoreManagerScript.Score = 0;
+           
             }
         }
         // ゲーム開始状態
         else if (GameStateManager.GameState == GameState.Playing)
-        {
+        { 
+            rigidbody.simulated = true;
             // 常にキャラを右へ移動
             // MoveFishOnXAxis();
             // ジャンプボタンが押されたら
@@ -58,6 +63,7 @@ public class FishScript : MonoBehaviour
                 // ジャンプ処理
                 BoostOnYAxis();
             }
+         
         }
         // ゲーム終了状態
         else if (GameStateManager.GameState == GameState.Dead)
@@ -76,7 +82,10 @@ public class FishScript : MonoBehaviour
 
     void FixedUpdate()
     {
-        FixFlappyRotation();
+       if (GameStateManager.GameState == GameState.Playing)
+        {
+            FixFlappyRotation();
+        }
     }
 
     // ジャンプボタン判定
@@ -133,14 +142,16 @@ public class FishScript : MonoBehaviour
     {
         if (GameStateManager.GameState == GameState.Playing)
         {
+            string tag = col.gameObject.tag;
+        	Debug.Log(tag);
             // Pipeblankとは上下２つの障害物のブランク部分のコライダーを持つゲームオブジェクトを想定
-            if (col.gameObject.tag == "Pipeblank")
+            if (tag == "Pipeblank")
             {
                 GetComponent<AudioSource>().PlayOneShot(ScoredAudioClip);
-                ScoreManagerScript.Score++;
+               
             }
             // 障害物のコライダーを持つゲームオブジェクトと接触したら
-            else if (col.gameObject.tag == "Obstacle1" || col.gameObject.tag == "Obstacle2")
+            else if (tag == "Obstacle1" || tag == "Obstacle2" || tag == "Floor" || tag == "Ceiling" )
             {
                 FlappyDies();
             }
