@@ -8,7 +8,7 @@ public class ResultScore : MonoBehaviour
 
     public Text scoreText;
 
-    void Update()
+    void Start()
     {
         int s = FishScoreManager.getScore();
 
