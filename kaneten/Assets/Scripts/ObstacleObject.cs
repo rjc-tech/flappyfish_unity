@@ -35,11 +35,11 @@ public class ObstacleObject : MonoBehaviour
 
 		// 経過時間が障害物生成間隔以上ならば新しい障害物を生成
         if(timeElapsed >= createInterval) {
-     // if (Input.GetKey (KeyCode.LeftArrow)) {
-
      		// ObstacleプレハブをGameObject型で取得
         	GameObject obj = (GameObject)Resources.Load ("Obstacle1");
+        	obj.tag = "Obstacle1";
         	GameObject obj2 = (GameObject)Resources.Load ("Obstacle2");
+        	obj2.tag = "Obstacle2";
         	// Obstacleプレハブを元に、インスタンスを生成
         	float y = Random.value * 10 - 5f;
         	

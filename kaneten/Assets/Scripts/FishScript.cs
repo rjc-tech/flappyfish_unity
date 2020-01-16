@@ -140,7 +140,7 @@ public class FishScript : MonoBehaviour
                 ScoreManagerScript.Score++;
             }
             // 障害物のコライダーを持つゲームオブジェクトと接触したら
-            else if (col.gameObject.tag == "Obstacle1")
+            else if (col.gameObject.tag == "Obstacle1" || col.gameObject.tag == "Obstacle2")
             {
                 FlappyDies();
             }
