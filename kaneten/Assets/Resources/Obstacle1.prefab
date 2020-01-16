@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1720374290743952526}
   - component: {fileID: 1285453885749875000}
   - component: {fileID: -4940299808896028337}
-  - component: {fileID: 6640434117004562569}
+  - component: {fileID: 429144803735432404}
   m_Layer: 0
   m_Name: Obstacle1
   m_TagString: Untagged
@@ -95,8 +95,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   originObject: {fileID: 0}
---- !u!61 &6640434117004562569
-BoxCollider2D:
+--- !u!58 &429144803735432404
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -109,15 +109,5 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.28, y: 1.28}
-    newSize: {x: 1.28, y: 1.28}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.28, y: 1.28}
-  m_EdgeRadius: 0
+  m_Radius: 0.6
