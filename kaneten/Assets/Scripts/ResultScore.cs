@@ -26,12 +26,12 @@ public class ResultScore : MonoBehaviour
 
         if (highScoreText != null)
         {
-            highScoreText.text = "highScore: " + highScore.ToString();
+            highScoreText.text = "HIGH SCORE: " + highScore.ToString();
         }
         
         if (scoreText != null)
         {
-            scoreText.text = "ResultScore: " + resultScore.ToString();
+            scoreText.text = "RESULT SCORE: " + resultScore.ToString();
         }
         
         Debug.Log("highScore: " + highScore.ToString());
